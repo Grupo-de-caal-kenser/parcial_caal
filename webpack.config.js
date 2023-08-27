@@ -8,11 +8,11 @@ module.exports = {
     'js/inicio' : './src/js/inicio.js',
     'js/login/index' : './src/js/login/index.js',
     'js/usuarios/index' : './src/js/usuarios/index.js',
-    'js/usuarios/estadistica' : './src/js/usuarios/estadistica.js',
+    // 'js/usuarios/estadistica' : './src/js/usuarios/estadistica.js',
     'js/roles/index' : './src/js/roles/index.js',
-    'js/roles/estadistica2' : './src/js/roles/estadistica2.js',
+    // 'js/roles/estadistica2' : './src/js/roles/estadistica2.js',
     'js/permisos/index' : './src/js/permisos/index.js',
-    'js/permisos/estadistica2' : './src/js/permisos/estadistica2.js',
+    // 'js/permisos/estadistica2' : './src/js/permisos/estadistica2.js',
   },
   output: {
     filename: '[name].js',
@@ -43,5 +43,12 @@ module.exports = {
         }
       },
     ]
+  },
+  resolve: {
+    fallback: {
+      stream: require.resolve('stream-browserify'),
+      buffer: require.resolve('buffer/'),
+      crypto: require.resolve('crypto-browserify')
+    }
   }
 };

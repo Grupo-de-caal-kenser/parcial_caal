@@ -14,7 +14,7 @@ const login = async e => {
     }
 
     try {
-        const url = "/datatable_kenser/API/login"; 
+        const url = "/parcial_caal/API/login"; 
 
         const body = new FormData(formLogin);
 
@@ -46,7 +46,7 @@ const login = async e => {
             icon
         }).then((e)=>{
             if(codigo == 1){
-                location.href = '/datatable_kenser/menu'
+                location.href = '/parcial_caal/usuarios'
             }
         })
 

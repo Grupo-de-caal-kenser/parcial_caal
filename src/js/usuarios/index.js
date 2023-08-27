@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
 import Datatable from "datatables.net-bs5";
 import { lenguaje  } from "../lenguaje";
+import bcrypt from "bcryptjs";
 
 
 const formulario = document.querySelector('form')
@@ -48,7 +49,7 @@ const datatable = new Datatable('#tablaUsuarios', {
             data: 'usu_id',
             searchable : false,
             orderable : false,
-            render : (data, type, row, meta) => `<button class="btn btn-warning" data-id='${data}' data-nombre='${row["usu_nombre"]}' data-catalogo='${row["usu_catalogo"]}' data-password='${row["usu_password"]}' data-estado='${row["usu_estado"]}'>Modificar</button>`
+            render : (data, type, row, meta) => `<button class="btn btn-warning" data-id='${data}' data-nombre='${row["usu_nombre"]}' data-catalogo='${row["usu_catalogo"]}' data-password='${row["usu_password"]}'>Modificar</button>`
         },
         {
             title : 'ELIMINAR',
@@ -64,7 +65,9 @@ const datatable = new Datatable('#tablaUsuarios', {
 const buscar = async () => {
     let usu_nombre = formulario.usu_nombre.value;
     let usu_catalogo = formulario.usu_catalogo.value;
-    const url = `/parcial_caal/API/usuarios/buscar?usu_nombre=${usu_nombre}&usu_catalogo=${usu_catalogo}`;
+    let usu_password = formulario.usu_password.value;
+    
+    const url = `/parcial_caal/API/usuarios/buscar?usu_nombre=${usu_nombre}&usu_catalogo=${usu_catalogo}&usu_password=${usu_password}`;
     const config = {
         method : 'GET'
     }
@@ -102,6 +105,13 @@ const guardar = async (evento) => {
 
     const body = new FormData(formulario)
     body.delete('usu_id')
+
+    const plainPassword = body.get('usu_password');
+    const hashedPassword = await bcrypt.hash(plainPassword, 10); // 10 es el número de rondas de hashing
+
+    // Usa la contraseña hasheada en lugar de la original
+    body.set('usu_password', hashedPassword);
+
     const url = '/parcial_caal/API/usuarios/guardar';
     const headers = new Headers();
     headers.append("X-Requested-With", "fetch");
@@ -148,17 +158,22 @@ const traeDatos = (e) => {
     const id = button.dataset.id;
     const nombre = button.dataset.nombre;
     const catalogo = button.dataset.catalogo;
+    const password = button.dataset.password;
+    
 
     const dataset = {
         id,
         nombre,
-        catalogo
+        catalogo,
+        password
     };
     colocarDatos(dataset);
         const body = new FormData(formulario);
         body.append('usu_id', id);
         body.append('usu_nombre', nombre);
-        body.append('usu_catalogo', catalogo);   
+        body.append('usu_catalogo', catalogo);
+        body.append('usu_password', password);  
+
 };
 
 
@@ -259,7 +274,6 @@ const colocarDatos = (dataset) => {
     formulario.usu_nombre.value = dataset.nombre;
     formulario.usu_catalogo.value = dataset.catalogo;
     formulario.usu_password.value = dataset.password;
-    formulario.usu_estado.value = dataset.estado;
     formulario.usu_id.value = dataset.id;
 
     btnGuardar.disabled = true

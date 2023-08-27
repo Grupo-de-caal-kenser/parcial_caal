@@ -8,11 +8,7 @@ use MVC\Router;
 
 class UsuarioController {
     public static function datatable(Router $router){
-        if(isset($_SESSION['auth_user'])){
         $router->render('usuarios/datatable', []);
-        }else{
-            header('Location: /datatable_kenser/');
-        }
     }
     public static function guardarAPI(){
         try {
@@ -70,8 +66,8 @@ class UsuarioController {
     public static function eliminarAPI(){
            
         try {
-            $usu_id = $_POST['usu_id'];
-            $usuario = Usuario::find($usu_id);
+            $usuario_id = $_POST['usu_id'];
+            $usuario = Usuario::find($usuario_id);
 
             $usuario->usu_situacion = 0;
             $resultado = $usuario->actualizar();

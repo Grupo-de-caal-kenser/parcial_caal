@@ -6,7 +6,7 @@
   <title>Document</title>
   <style>
         body{
-            background-image: url('/datatable_kenser/public/images/ejercito2.jpg') !important;
+            background-image: url('/parcial_caal/public/images/ejercito2.jpg') !important;
             background-size:cover; 
 
         }
@@ -101,7 +101,7 @@
             <button class="login-button" type="submit">Iniciar Sesión</button>
         </form>
         <div class="d-grid">
-            <p class="mb-0 text-center"> ¡No tiene cuenta!<a href="/usuario/index" class="text-primary fw-bold ms-2">REGISTRARSE</a></p>
+            <p class="mb-0 text-center"> ¡No tiene cuenta!<a href="/parcial_caal/usuarios/datatable" class="text-primary fw-bold ms-2">REGISTRARSE</a></p>
         </div>
     </div>
 

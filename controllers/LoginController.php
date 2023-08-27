@@ -10,18 +10,8 @@ use Model\Usuario;
 class LoginController {
 
     public static function index(Router $router) {
-        if (!isset($_SESSION['auth_user'] )){
-            $router->render('login/index', []);
-        }else{
-            header('Location: /datatable_kenser/menu');
-    }
-    }
-    public static function menu(Router $router){
-        if(isset($_SESSION['auth_user'])){
-            $router->render('menu/index', []);
-        }else{
-            header('Location: /datatable_kenser/');
-        }
+        $router->render('login/index', []);
+        
     }
 
 
@@ -68,6 +58,6 @@ class LoginController {
         $_SESSION = [];
         session_unset();
         session_destroy();
-        header('Location: /datatable_kenser/');
+        header('Location: /parcial_caal/');
     }
 }

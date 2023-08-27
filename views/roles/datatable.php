@@ -12,7 +12,7 @@
             <a class="nav-link" href="/parcial_caal/usuarios/datatable">Usuario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/parcial_caal/roles/estadistica">Roles</a>
+            <a class="nav-link" href="/parcial_caal/roles/datatable">Roles</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/parcial_caal/permisos/datatable">Asignar permiso</a>

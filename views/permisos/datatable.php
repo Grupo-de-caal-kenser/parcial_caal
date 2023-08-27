@@ -12,7 +12,7 @@
             <a class="nav-link" href="/parcial_caal/usuarios/datatable">Usuario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/parcial_caal/roles/estadistica">Roles</a>
+            <a class="nav-link" href="/parcial_caal/roles/datatable">Roles</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/parcial_caal/permisos/datatable">Asignar permiso</a>
@@ -36,13 +36,24 @@
         <div class="row mb-3">
                 <div class="col">
                     <label for="permiso_usuario">USUARIO</label>
-                    <input type="text" name="permiso_usuario" id="permiso_usuario" class="form-control">
+                    <select name="permiso_usuario" id="permiso_usuario" class="form-control">
+                        <option value="">SELECCIONE...</option>
+                        <?php foreach ($usuarios as $usuario) : ?>
+                            <option value="<?= $usuario['usu_id'] ?>"><?= $usuario['usu_nombre'] ?></option>
+                        <?php endforeach ?>
+                    </select>
                 </div>
             </div>
+            
             <div class="row mb-3">
                 <div class="col">
-                    <label for="permiso_rol">Roles</label>
-                    <input type="number" name="permiso_rol" id="permiso_rol" class="form-control">
+                    <label for="permiso_rol">ASIGNAR UN ROL</label>
+                    <select name="permiso_rol" id="permiso_rol" class="form-control">
+                        <option value="">SELECCIONE...</option>
+                        <?php foreach ($roles as $rol) : ?>
+                            <option value="<?= $rol['rol_id'] ?>"><?= $rol['rol_nombre'] ?></option>
+                        <?php endforeach ?>
+                    </select>
                 </div>
             </div>
         <div class="row mb-3">

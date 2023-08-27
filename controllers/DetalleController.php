@@ -9,9 +9,9 @@ use MVC\Router;
 class DetalleController {
     public static function estadistica(Router $router){
         if(isset($_SESSION['auth_user'])){
-            $router->render('productos/estadistica', []);
+            $router->render('permisos/estadistica', []);
             }else{
-                header('Location: /datatable_kenser/');
+                header('Location: /parcial_caal/');
             }
     }
 
@@ -36,7 +36,7 @@ class DetalleController {
         if(isset($_SESSION['auth_user'])){
             $router->render('clientes/estadistica2', []);
             }else{
-                header('Location: /datatable_kenser/');
+                header('Location: /parcial_caal/');
             }
     }
 

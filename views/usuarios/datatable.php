@@ -12,7 +12,7 @@
             <a class="nav-link" href="/parcial_caal/usuarios/datatable">Usuario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/parcial_caal/roles/estadistica">Roles</a>
+            <a class="nav-link" href="/parcial_caal/roles/datatable">Roles</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/parcial_caal/permisos/datatable">Asignar permiso</a>
@@ -48,7 +48,7 @@
             <div class="row mb-3">
                 <div class="col">
                     <label for="usu_password">Contraseña</label>
-                    <input type="number" name="usu_password" id="usu_password" class="form-control">
+                    <input type="text" name="usu_password" id="usu_password" class="form-control">
                 </div>
             </div>
         <div class="row mb-3">

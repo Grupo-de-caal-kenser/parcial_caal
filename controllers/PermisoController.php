@@ -4,15 +4,47 @@ namespace Controllers;
 
 use Exception;
 use Model\Permiso;
+use Model\Usuario;
+use Model\Rol;
 use MVC\Router;
 
 class PermisoController
 {
     public static function datatable(Router $router){
-        if(isset($_SESSION['auth_user'])){
-        $router->render('permisos/datatable', []);
-        }else{
-            header('Location: /datatable_kenser/');
+        $usuarios = static::buscarUsuario();
+        $roles = static::buscarRol();
+        $permisos = Permiso::all();
+
+        $router->render('permisos/datatable', [
+            'usuarios' => $usuarios,
+            'roles' => $roles,
+            'permisos' => $permisos,
+        ]);
+    }
+    public static function buscarUsuario(){
+        $sql = "SELECT * FROM usuarios where usu_situacion = 1";
+    
+        try {
+            $usuarios = Usuario::fetchArray($sql);
+    
+            return $usuarios;
+        } catch (Exception $e) {
+
+            return [];
+            
+        }
+    }
+    //!--------------------------
+    public static function buscarRol(){
+        $sql = "SELECT * FROM roles where rol_situacion = 1";
+    
+        try {
+            $roles = Rol::fetchArray($sql);
+            return $roles;
+
+        } catch (Exception $e) {
+            return [];
+            
         }
     }
 
@@ -45,6 +77,7 @@ class PermisoController
 
     public static function modificarAPI()
     {
+   
         try {
             $permiso = new Permiso($_POST);
             $resultado = $permiso->actualizar();
@@ -101,18 +134,23 @@ class PermisoController
     
     public static function buscarAPI()
     {
-        $permiso_usuario = $_GET['permiso_usuario'] ?? '';
-        $permiso_rol = $_GET['permiso_rol'] ?? '';
+        $usu_id = $_GET['usu_id'];
+        $rol_id = $_GET['rol_id'];
 
-        $sql = "SELECT * FROM permisos WHERE permiso_situacion = 1 ";
-        if ($permiso_usuario != '') {
-            $permiso_usuario = strtolower($permiso_usuario);
-            $sql .= " AND LOWER(permiso_usuario) LIKE '%$permiso_usuario%' ";
-        }
-        if ($permiso_rol != '') {
-            $permiso_rol = strtolower($permiso_rol);
-            $sql .= " AND permiso_rol= '$permiso_rol' ";
-        }
+        $sql = "SELECT permisos.permiso_id, usuarios.usu_nombre AS permiso_usuario, usuarios.usu_id, roles.rol_nombre AS permiso_rol, roles.rol_id
+        FROM permisos
+        INNER JOIN usuarios ON permisos.permiso_id = usuarios.usu_id
+        INNER JOIN roles ON permisos.permiso_rol = roles.rol_id
+
+        WHERE permisos.permiso_situacion = 1";
+    
+    if ($usu_id != '') {
+        $sql .= " AND usuarios.usu_id = '$usu_id'";
+    }
+    
+    if ($rol_id != '') {
+        $sql .= " AND roles.rol_id = '$rol_id'";
+    }
 
         try {
 

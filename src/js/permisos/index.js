@@ -250,6 +250,7 @@ const eliminar = async (e) => {
 const colocarDatos = (dataset) => {
     formulario.permiso_usuario.value = dataset.usuario;
     formulario.permiso_rol.value = dataset.rol;
+
     formulario.permiso_id.value = dataset.id;
 
     btnGuardar.disabled = true
