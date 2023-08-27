@@ -36,8 +36,10 @@ $router->get('/API/roles/buscar', [RolController::class,'buscarAPI'] );
 
 $router->get('/permisos/datatable', [PermisoController::class,'datatable']);
 $router->post('/API/permisos/guardar', [PermisoController::class,'guardarAPI'] );
-// $router->get('/permisos/estadistica2', [DetalleController::class,'estadistica2']);
-// $router->get('/API/permisos/estadistica2', [DetalleController::class,'detallePermisosAPI']);
+$router->get('/permisos/estadistica2', [PermisoController::class,'estadistica2']);
+$router->get('/API/permisos/estadistica', [PermisoController::class,'detalleEstadoUsuarioAPI']);
+$router->get('/permisos/estadistica', [PermisoController::class,'estadistica']);
+$router->get('/API/permisos/estadistica2', [PermisoController::class,'detalleUsuarioRolAPI']);
 $router->post('/API/permisos/modificar', [PermisoController::class,'modificarAPI'] );
 $router->post('/API/permisos/eliminar', [PermisoController::class,'eliminarAPI'] );
 $router->get('/API/permisos/buscar', [PermisoController::class,'buscarAPI'] );

@@ -18,7 +18,10 @@
             <a class="nav-link" href="/parcial_caal/permisos/datatable">Asignar permiso</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/parcial_caal/permisos/estadistica">Estadísticas</a>
+            <a class="nav-link" href="/parcial_caal/permisos/estadistica">Estadísticas Permisos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/parcial_caal/permisos/estadistica2">Estadísticas Roles</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -51,7 +54,6 @@
                     <input type="text" name="usu_password" id="usu_password" class="form-control">
                 </div>
             </div>
-            <input type="hidden" name="usu_estado" id="usu_estado">
         <div class="row mb-3">
             <div class="col">
                 <button type="submit" form="formularioUsuario" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">SOLICITAR USUARIO</button>

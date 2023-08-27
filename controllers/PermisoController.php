@@ -165,4 +165,52 @@ class PermisoController
             ]);
         }
     }
+    public static function estadistica(Router $router){
+        $router->render('permisos/estadistica', []);
+    }
+
+    public static function detalleEstadoUsuarioAPI(){
+
+        $sql = "SELECT usu_estado AS estado, COUNT(*) AS cantidad
+        FROM usuarios
+        GROUP BY usu_estado;";
+
+        try {
+            
+            $usuarios = Permiso::fetchArray($sql);
+    
+            echo json_encode($usuarios);
+        } catch (Exception $e) {
+            echo json_encode([
+                'detalle' => $e->getMessage(),
+                'mensaje' => 'Ocurrió un error',
+                'codigo' => 0
+            ]);
+        }
+    }
+    public static function estadistica2(Router $router){
+        $router->render('permisos/estadistica2', []);
+    }
+
+    public static function detalleUsuarioRolAPI(){
+
+        $sql = "SELECT r.rol_nombre AS rol, COUNT(p.permiso_id) AS cantidad_usuarios
+        FROM roles r
+        LEFT JOIN permisos p ON r.rol_id = p.permiso_rol
+        GROUP BY r.rol_id, r.rol_nombre
+        ORDER BY r.rol_nombre;";
+                
+        try {
+            
+            $usuarios = Permiso::fetchArray($sql);
+    
+            echo json_encode($usuarios);
+        } catch (Exception $e) {
+            echo json_encode([
+                'detalle' => $e->getMessage(),
+                'mensaje' => 'Ocurrió un error',
+                'codigo' => 0
+            ]);
+        }
+    }
 }

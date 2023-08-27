@@ -1,21 +1,22 @@
 import Chart from "chart.js/auto";
 import { Toast } from "../funciones";
 
-const canvas = document.getElementById('chartCliente')
+const canvas = document.getElementById('chartEstados')
 const btnActualizar = document.getElementById('btnActualizar')
 const context = canvas.getContext('2d');
 
 
-const chartClientes = new Chart(context, {
-    type : 'polarArea',
+const chartVentas = new Chart(context, {
+    type : 'bar',
     data : {
         labels : [],
         datasets : [
             {
-                label : 'Clientes',
+                label : 'estados',
                 data : [],
                 backgroundColor : []
             },
+
         ]
     },
     options : {
@@ -24,7 +25,7 @@ const chartClientes = new Chart(context, {
 })
 
 const getEstadisticas = async () => {
-    const url = `/datatable_kenser/API/clientes/estadistica2`;
+    const url = `/parcial_caal/API/permisos/estadistica`;
     const config = {
         method : 'GET'
     }
@@ -33,18 +34,18 @@ const getEstadisticas = async () => {
         const respuesta = await fetch(url, config)
         const data = await respuesta.json();
 
-        chartClientes.data.labels = [];
-        chartClientes.data.datasets[0].data = [];
-        chartClientes.data.datasets[0].backgroundColor = []
+        chartVentas.data.labels = [];
+        chartVentas.data.datasets[0].data = [];
+        chartVentas.data.datasets[0].backgroundColor = []
 
 
 
         if(data){
 
             data.forEach( registro => {
-                chartClientes.data.labels.push(registro.cliente_nombre)
-                chartClientes.data.datasets[0].data.push(registro.total_ventas)
-                chartClientes.data.datasets[0].backgroundColor.push(getRandomColor())
+                chartVentas.data.labels.push(registro.estado)
+                chartVentas.data.datasets[0].data.push(registro.cantidad)
+                chartVentas.data.datasets[0].backgroundColor.push(getRandomColor())
             });
 
         }else{
@@ -54,7 +55,7 @@ const getEstadisticas = async () => {
             })
         }
         
-        chartClientes.update();
+        chartVentas.update();
        
     } catch (error) {
         console.log(error);

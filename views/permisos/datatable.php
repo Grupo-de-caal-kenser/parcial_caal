@@ -18,7 +18,10 @@
             <a class="nav-link" href="/parcial_caal/permisos/datatable">Asignar permiso</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/parcial_caal/permisos/estadistica">Estadísticas</a>
+            <a class="nav-link" href="/parcial_caal/permisos/estadistica">Estadísticas Permisos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/parcial_caal/permisos/estadistica2">Estadísticas Roles</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
