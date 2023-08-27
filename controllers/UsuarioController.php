@@ -17,7 +17,7 @@ class UsuarioController {
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
-                    'mensaje' => 'Registro guardado correctamente',
+                    'mensaje' => 'La solicitud de usuario ha sido enviada',
                     'codigo' => 1
                 ]);
             }else{
@@ -66,8 +66,8 @@ class UsuarioController {
     public static function eliminarAPI(){
            
         try {
-            $usuario_id = $_POST['usu_id'];
-            $usuario = Usuario::find($usuario_id);
+            $usu_id = $_POST['usu_id'];
+            $usuario = Usuario::find($usu_id);
 
             $usuario->usu_situacion = 0;
             $resultado = $usuario->actualizar();

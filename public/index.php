@@ -15,7 +15,6 @@ $router = new Router();
 $router->setBaseURL('/' . $_ENV['APP_NAME']);
 
 $router->get('/', [LoginController::class,'index']);
-$router->get('/usuarios', [LoginController::class,'usuarios']);
 $router->get('/logout', [LoginController::class,'logout']);
 $router->post('/API/login', [LoginController::class,'loginAPI']);
 

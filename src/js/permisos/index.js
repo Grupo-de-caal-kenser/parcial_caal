@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
 import Datatable from "datatables.net-bs5";
 import { lenguaje  } from "../lenguaje";
+import bcrypt from "bcryptjs";
 
 
 const formulario = document.querySelector('form')
@@ -34,6 +35,33 @@ const datatable = new Datatable('#tablaPermisos', {
         {
             title : 'PERMISO',
             data: 'permiso_rol',
+        },
+        {
+            title: 'CONTRASEÑA',
+            data: 'usu_password',
+            render: (data, type, row, meta) => {
+                const inputHtml = `
+                    <input type="password" class="form-control" data-id="${row['permiso_id']}" value="${data}" />
+                `;
+                const buttonHtml = `
+                    <button class="btn btn-primary btn-save-password" data-id="${row['permiso_id']}">Guardar</button>
+                `;
+                return `${inputHtml} ${buttonHtml}`;
+            }
+        },
+        {
+            title : 'ESTADO',
+            data: 'usu_estado',
+            render: (data, type, row, meta) => {
+                const selectHtml = `
+                    <select class="form-select" data-id="${row['usu_id']}" data-usuario="${row['permiso_usuario']}" data-rol="${row['permiso_rol']}">
+                        <option value="pendiente" ${data === 'pendiente' ? 'selected' : ''}>Pendiente</option>
+                        <option value="activo" ${data === 'activo' ? 'selected' : ''}>Activo</option>
+                        <option value="inactivo" ${data === 'inactivo' ? 'selected' : ''}>Inactivo</option>
+                    </select>
+                `;
+                return selectHtml;
+            }
         },
         {
             title : 'MODIFICAR',
@@ -289,3 +317,53 @@ btnCancelar.addEventListener('click', cancelarAccion)
 btnModificar.addEventListener('click', modificar)
 datatable.on('click','.btn-warning', traeDatos )
 datatable.on('click','.btn-danger', eliminar )
+datatable.on('change', 'select', async function () {
+    const select = this;
+    const id = select.dataset.id;
+    const nuevoEstado = select.value;
+
+    try {
+        // Realiza una petición al servidor para actualizar el estado en la base de datos
+        const response = await fetch(`/parcial_caal/API/usuarios/guardar/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nuevoEstado })
+        });
+
+        if (response.ok) {
+            console.log(`Estado del usuario con ID ${id} actualizado a ${nuevoEstado}`);
+        } else {
+            console.error('Error al actualizar el estado del usuario');
+        }
+    } catch (error) {
+        console.error('Error al realizar la petición al servidor', error);
+    }
+});
+datatable.on('click', '.btn-save-password', async function() {
+    const button = this;
+    const id = button.dataset.id;
+    const input = button.parentElement.querySelector('input[type="password"]');
+    const newPassword = input.value;
+
+    try {
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        const response = await fetch(`/parcial_caal/API/usuarios/modificarPassword/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ newPassword: hashedPassword })
+        });
+
+        if (response.ok) {
+            console.log(`Contraseña del usuario con ID ${id} actualizada`);
+        } else {
+            console.error('Error al actualizar la contraseña del usuario');
+        }
+    } catch (error) {
+        console.error('Error al realizar la petición al servidor', error);
+    }
+});

@@ -12,7 +12,8 @@ const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
 const btnCancelar = document.getElementById('btnCancelar');
 
-
+btnBuscar.disabled = true
+btnBuscar.parentElement.style.display = 'none'
 btnModificar.disabled = true
 btnModificar.parentElement.style.display = 'none'
 btnCancelar.disabled = true

@@ -51,9 +51,10 @@
                     <input type="text" name="usu_password" id="usu_password" class="form-control">
                 </div>
             </div>
+            <input type="hidden" name="usu_estado" id="usu_estado">
         <div class="row mb-3">
             <div class="col">
-                <button type="submit" form="formularioUsuario" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">Guardar</button>
+                <button type="submit" form="formularioUsuario" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">SOLICITAR USUARIO</button>
             </div>
             <div class="col">
                 <button type="button" id="btnModificar" class="btn btn-warning w-100">Modificar</button>
@@ -67,7 +68,7 @@
         </div>
     </form>
 </div>
-<h1>Datatable de Usuarios</h1>
+<h1></h1>
 <div class="row justify-content-center">
     <div class="col table-responsive">
         <table id="tablaUsuarios" class="table table-bordered table-hover">
