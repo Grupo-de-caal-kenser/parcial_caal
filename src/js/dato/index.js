@@ -278,63 +278,6 @@ const modificar = async () => {
     }
 };
 
-const modificarContrasena = async e => {
-    const button = e.target;
-    const id = button.dataset.id;
-    const nombre = button.dataset.nombre;
-
-    // Mostrar un formulario o ventana modal para ingresar la nueva contraseña
-    const { value: nuevaContrasena } = await Swal.fire({
-        title: `Modificar Contraseña para ${nombre}`,
-        input: 'password',
-        inputLabel: 'Nueva Contraseña',
-        inputPlaceholder: 'Ingrese la nueva contraseña',
-        inputAttributes: {
-            autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        confirmButtonText: 'Guardar',
-        cancelButtonText: 'Cancelar',
-        showLoaderOnConfirm: true,
-        preConfirm: async (nuevaContrasena) => {
-            // Aquí puedes realizar la lógica para enviar la nueva contraseña al servidor
-            // y modificarla para el usuario con el id proporcionado
-            const url = `/parcial_caal/API/dato/modificarContrasena`;
-            const body = new FormData();
-            body.append('usu_id', id);
-            body.append('nuevaContrasena', nuevaContrasena);
-            
-            try {
-                const respuesta = await fetch(url, {
-                    method: 'POST',
-                    body
-                });
-                const data = await respuesta.json();
-
-                if (data.codigo == 1) {
-                    buscar();
-                    return nuevaContrasena;
-                } else {
-                    throw new Error(data.detalle || 'Error al modificar contraseña');
-                }
-            } catch (error) {
-                throw new Error(error.message || 'Error al modificar contraseña');
-            }
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-    });
-
-    if (nuevaContrasena) {
-        Swal.fire({
-            icon: 'success',
-            title: 'Contraseña Modificada',
-            text: 'la contraseña se modifico con exito',
-            confirmButtonText: 'OK'
-        });
-    }
-};
-
-
 datatable.on('click', '.btn-warning', () => {
     mostrarFormulario();
     traeDatos(event);
@@ -345,14 +288,4 @@ btnCancelar.addEventListener('click', cancelarAccion);
 datatable.on('click','.btn-warning', traeDatos)
 datatable.on('click','.btn-info', desactivar)
 datatable.on('click','.btn-danger', eliminar)
-datatable.on('click', '.btn-warning', async (event) => {
-    mostrarFormulario();
-
-    // Llamar a la función para modificar contraseña
-    const newPassword = await modificarContrasena(event);
-
-    // Si la nueva contraseña está disponible, actualízala en los datos de la fila (suponiendo que tienes la lógica para actualizar los datos de la tabla)
-    if (newPassword) {
-    }
-});
 buscar();

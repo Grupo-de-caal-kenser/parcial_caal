@@ -93,12 +93,12 @@ class DatoController {
     }
     public static function modificarAPI() {
         try {
-            $usuario = $_POST;
+            $usuarioData = $_POST;
             
             // Hashing de la contraseña
-            if (isset($usuario['usu_password'])) {
-                $hashedPassword = password_hash($usuario['usu_password'], PASSWORD_DEFAULT);
-                $usuario['usu_password'] = $hashedPassword;
+            if (isset($usuarioData['usu_password'])) {
+                $hashedPassword = password_hash($usuarioData['usu_password'], PASSWORD_DEFAULT);
+                $usuarioData['usu_password'] = $hashedPassword;
             }
     
             // Establecer usu_situacion en código 1
