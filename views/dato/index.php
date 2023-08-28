@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +8,7 @@
     <!-- Agregar los enlaces a los archivos CSS y JavaScript de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-                body {
+        body {
     background-image: url('/parcial_caal/public/images/ejercito.jpg');
     background-size: cover;
 }
@@ -17,7 +18,7 @@
     padding: 20px; /* Añade un espacio de separación del borde */
 }
 
-#tablaRole{
+#tablaUsuariosTabla {
     background-color: #f2f2f2; /* Gris claro */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra */
 }
@@ -43,7 +44,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="/parcial_caal/inicio">Menú Principal</a>
+        <a class="navbar-brand" href="/parcial_caal/inicio">Menú Principal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -75,37 +76,60 @@
             <a class="btn btn-danger" href="/parcial_caal/logout">Cerrar Sesión</a>
         </div>
     </nav>
-<h1 class="text-center">ROLES</h1>
-<div class="row justify-content-center mb-5">
-    <form class="col-lg-8 border bg-light p-3" id="formularioRol">
-        <input type="hidden" name="rol_id" id="rol_id">
-        <div class="row mb-3">
-                <div class="col">
-                    <label for="rol_nombre">Nombre del Rol</label>
-                    <input type="text" name="rol_nombre" id="rol_nombre" class="form-control">
+
+
+<div class="row justify-content-center">
+            <form class="col-lg-8 border bg-light p-3">
+            <h1 class="text-center">Actualizacion</h1><br>
+            <input type="hidden" name="usu_id" id="usu_id">
+
+                <div class="row mb-3">
+                    <div class="col">
+                    <label for="usu_nombre">Nombre del Usuario</label>
+                        <input type="text" name="usu_nombre" id="usu_nombre" class="form-control" >
+                    </div>
                 </div>
-            </div>         
-            <div class="row mb-3">
-            <div class="col">
-                <button type="submit" form="formularioRol" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">Guardar</button>
-            </div>
-            <div class="col">
-                <button type="button" id="btnModificar" class="btn btn-warning w-100">Modificar</button>
-            </div>
-            <div class="col">
-                <button type="button" id="btnBuscar" class="btn btn-info w-100">Buscar</button>
-            </div>
-            <div class="col">
-                <button type="button" id="btnCancelar" class="btn btn-danger w-100">Cancelar</button>
-            </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="usu_catalogo">Catálogo</label>
+                        <input type="number" name="usu_catalogo" id="usu_catalogo" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="usu_password">Contraseña</label>
+                        <input type="text" name="usu_password" id="usu_password" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-2">
+                        <button type="button" id="btnModificar" class="btn btn-warning w-100">Modificar</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" id="btnCancelar" class="btn btn-danger w-100">Cancelar</button>
+                    </div>
+
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-<h1>Datatable de productos</h1>
-<div id="tablaRole"class="row justify-content-center">
-    <div class="col table-responsive">
-        <table id="tablaRoles" class="table table-bordered table-hover">
-        </table>
+
+      
+        <div id="tablaUsuariosTabla" class="container mt-5">
+            <div class="row justify-content-center mt-4">
+                <div class="col-12 p-4 shadow"> 
+                    <div class="text-center">
+                        <h1>Usuarios Activos</h1>
+                    </div>
+            <table id="tablaUsuarios" class="table table-bordered table-hover">
+                <!-- Contenido de la tabla -->
+            </table>
+        </div>
     </div>
 </div>
-<script src="<?= asset('./build/js/roles/index.js') ?>"></script>
+<script src="<?= asset('./build/js/dato/index.js') ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

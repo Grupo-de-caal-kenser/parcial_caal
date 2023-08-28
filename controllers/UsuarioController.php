@@ -61,6 +61,43 @@ class UsuarioController {
         }
     }
 
+    public static function modificarEstadoAPI(){
+        $sql = "SELECT
+        usu_nombre,
+        CASE
+            WHEN usu_situacion = 1 THEN 'Pendiente'        
+            WHEN usu_situacion = 2 THEN 'Activo'
+            WHEN usu_situacion = 3 THEN 'Inactivo'
+        END AS estado
+    FROM usuario;";
+        try {
+            $usu_id = $_POST['usu_id'];
+            $usuario = Usuario::find($usu_id);
+
+            $usuario->usu_situacion = 0;
+            $resultado = $usuario->actualizar();
+
+            if($resultado['resultado'] == 1){
+                echo json_encode([
+                    'mensaje' => 'Registro modificado correctamente',
+                    'codigo' => 1
+                ]);
+            }else{
+                echo json_encode([
+                    'mensaje' => 'Ocurrió un error',
+                    'codigo' => 0
+                ]);
+            }
+            // echo json_encode($resultado);
+        } catch (Exception $e) {
+            echo json_encode([
+                'detalle' => $e->getMessage(),
+                'mensaje' => 'Ocurrió un error',
+                'codigo' => 0
+            ]);
+        }
+    }
+
 
 
     public static function eliminarAPI(){

@@ -1,5 +1,5 @@
 import { validarFormulario, Toast } from "../funciones";
-
+const show_password = document.getElementById('show_password');
 const formLogin = document.querySelector('form');
 
 const login = async e => {
@@ -46,13 +46,24 @@ const login = async e => {
             icon
         }).then((e)=>{
             if(codigo == 1){
-                location.href = '/parcial_caal/usuarios'
+                location.href = '/parcial_caal/inicio'
             }
         })
 
     } catch (error) {
         console.log(error);
     }
-    
+
 }
+function ver_password() {
+    const passwordInput = document.getElementById("usu_password");
+    const showPasswordCheckbox = document.getElementById("show_password");
+
+    if (showPasswordCheckbox.checked) {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+}
+show_password.addEventListener('click', ver_password);
 formLogin.addEventListener('submit', login);

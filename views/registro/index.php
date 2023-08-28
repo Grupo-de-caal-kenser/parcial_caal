@@ -17,7 +17,7 @@
     padding: 20px; /* Añade un espacio de separación del borde */
 }
 
-#tablaRole{
+#tablaUsuariosTabla {
     background-color: #f2f2f2; /* Gris claro */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra */
 }
@@ -43,7 +43,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="/parcial_caal/inicio">Menú Principal</a>
+        <a class="navbar-brand" href="/parcial_caal/inicio">Menú Principal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -75,37 +75,43 @@
             <a class="btn btn-danger" href="/parcial_caal/logout">Cerrar Sesión</a>
         </div>
     </nav>
-<h1 class="text-center">ROLES</h1>
-<div class="row justify-content-center mb-5">
-    <form class="col-lg-8 border bg-light p-3" id="formularioRol">
-        <input type="hidden" name="rol_id" id="rol_id">
-        <div class="row mb-3">
-                <div class="col">
-                    <label for="rol_nombre">Nombre del Rol</label>
-                    <input type="text" name="rol_nombre" id="rol_nombre" class="form-control">
-                </div>
-            </div>         
+    <h2 class="text-center mb-4 text-primary">Registro de Usuario</h2>
+    <div class="row justify-content-center">
+        <form id="formRegistro" class="col-lg-4 border rounded p-3" action="/parcial_caal/registro" method="POST">
             <div class="row mb-3">
-            <div class="col">
-                <button type="submit" form="formularioRol" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">Guardar</button>
+                <div class="col">
+                    <label for="usu_nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="usu_nombre" name="usu_nombre" required>
+                </div>
             </div>
-            <div class="col">
-                <button type="button" id="btnModificar" class="btn btn-warning w-100">Modificar</button>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="usu_catalogo" class="form-label">Catálogo</label>
+                    <input type="number" class="form-control" id="usu_catalogo" name="usu_catalogo" required>
+                </div>
             </div>
-            <div class="col">
-                <button type="button" id="btnBuscar" class="btn btn-info w-100">Buscar</button>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="usu_password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="usu_password" name="usu_password" required>
+                </div>
             </div>
-            <div class="col">
-                <button type="button" id="btnCancelar" class="btn btn-danger w-100">Cancelar</button>
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-check-label" for="show_password">
+                        <input type="checkbox" id="show_password">
+                        Mostrar Contraseña
+                    </label>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
-<h1>Datatable de productos</h1>
-<div id="tablaRole"class="row justify-content-center">
-    <div class="col table-responsive">
-        <table id="tablaRoles" class="table table-bordered table-hover">
-        </table>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </div>
+        </form>
     </div>
-</div>
-<script src="<?= asset('./build/js/roles/index.js') ?>"></script>
+    <div class="mt-3">
+        <p class="mb-0 text-center">¿Ya tiene una cuenta?<a href="/parcial_caal/" class="text-primary fw-bold ms-2">Iniciar Sesión</a></p>
+    </div>
+    <script src="<?= asset('./build/js/registro/index.js') ?>"></script>
+</body>
+</html>

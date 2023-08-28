@@ -98,10 +98,18 @@
                 <label class="form-label" for="usu_password">Contraseña</label>
                 <input class="form-input" type="password" id="usu_password" name="usu_password">
             </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-check-label" for="show_password">
+                        <input type="checkbox" id="show_password">
+                        Mostrar Contraseña
+                    </label>
+                </div>
+            </div>            
             <button class="login-button" type="submit">Iniciar Sesión</button>
         </form>
         <div class="d-grid">
-            <p class="mb-0 text-center"> ¡No tiene cuenta!<a href="/parcial_caal/usuarios/datatable" class="text-primary fw-bold ms-2">REGISTRARSE</a></p>
+            <p class="mb-0 text-center"> ¡No tiene cuenta!<a href="/parcial_caal/registro" class="text-primary fw-bold ms-2">REGISTRARSE</a></p>
         </div>
     </div>
 

@@ -6,10 +6,9 @@ primary key (rol_id),
 )
 create table usuarios(
 usu_id serial,
-usu_nombre varchar(50) not null,
+usu_nombre varchar(50) unique not null,
 usu_catalogo integer unique not null,
 usu_password lvarchar not null,
-usu_estado CHAR(9) DEFAULT 'PENDIENTE' CHECK (usu_estado IN ('PENDIENTE', 'ACTIVO', 'INACTIVO')),
 usu_situacion smallint default 1,
 primary key (usu_id)
 )

@@ -137,12 +137,12 @@ class PermisoController
         $usu_id = $_GET['usu_id'];
         $rol_id = $_GET['rol_id'];
 
-        $sql = "SELECT permisos.permiso_id, usuarios.usu_nombre AS permiso_usuario, usuarios.usu_estado AS usu_estado, usuarios.usu_id, roles.rol_nombre AS permiso_rol, roles.rol_id
+        $sql = "SELECT permisos.permiso_id, usuarios.usu_nombre AS permiso_usuario, usuarios.usu_situacion AS usu_situacion, usuarios.usu_id, roles.rol_nombre AS permiso_rol, roles.rol_id
         FROM permisos
         INNER JOIN usuarios ON permisos.permiso_id = usuarios.usu_id
         INNER JOIN roles ON permisos.permiso_rol = roles.rol_id
 
-        WHERE permisos.permiso_situacion = 1";
+        WHERE permisos.permiso_situacion = 1;";
     
     if ($usu_id != '') {
         $sql .= " AND usuarios.usu_id = '$usu_id'";
