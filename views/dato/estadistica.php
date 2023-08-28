@@ -88,7 +88,7 @@ body {
             <div class="col-lg-10">
                 <div class="card shadow mt-3">
                     <div class="card-body">
-                        <canvas id="chartEstados" style="width: 100%;"></canvas>
+                        <canvas id="chartEstados" style="width: 60%;"></canvas>
                     </div>
                 </div>
             </div>

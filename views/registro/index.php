@@ -17,7 +17,7 @@
     padding: 20px; /* Añade un espacio de separación del borde */
 }
 
-#tablaUsuariosTabla {
+#formRegistro {
     background-color: #f2f2f2; /* Gris claro */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra */
 }
@@ -44,35 +44,6 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
         <a class="navbar-brand" href="/parcial_caal/inicio">Menú Principal</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/parcial_caal/activar">Solicitudes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/parcial_caal/dato">Usuarios Activos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/parcial_caal/desactivar">Usuarios Desactivados</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/parcial_caal/dato/estadistica">Usuarios Activos e Inactivos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/parcial_caal/permisos/estadistica2">Usuarios por roles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/parcial_caal/roles/datatable">Roles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/parcial_caal/permisos/datatable">Permisos para el usuario</a>
-                    </li>
-                </ul>
-            </div>
-            <a class="btn btn-danger" href="/parcial_caal/logout">Cerrar Sesión</a>
         </div>
     </nav>
     <h2 class="text-center mb-4 text-primary">Registro de Usuario</h2>
@@ -106,12 +77,13 @@
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Registrarse</button>
+            </div>    
+            <div class="mt-3">
+                <p class="mb-0 text-center">¿Ya tiene una cuenta?<a href="/parcial_caal/" class="text-primary fw-bold ms-2">Iniciar Sesión</a></p>
             </div>
         </form>
     </div>
-    <div class="mt-3">
-        <p class="mb-0 text-center">¿Ya tiene una cuenta?<a href="/parcial_caal/" class="text-primary fw-bold ms-2">Iniciar Sesión</a></p>
-    </div>
+
     <script src="<?= asset('./build/js/registro/index.js') ?>"></script>
 </body>
 </html>
