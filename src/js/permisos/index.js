@@ -36,7 +36,13 @@ const datatable = new Datatable('#tablaPermisos', {
             title : 'PERMISO',
             data: 'permiso_rol',
         },
-
+        {
+            title : 'MODIFICAR',
+            data: 'permiso_id',
+            searchable : false,
+            orderable : false,
+            render : (data, type, row, meta) => `<button class="btn btn-warning" data-id='${data}' data-usuario='${row["permiso_usuario"]}' data-rol='${row["permiso_rol"]}' >Modificar</button>`
+        },
         {
             title : 'ELIMINAR',
             data: 'permiso_id',
@@ -133,7 +139,7 @@ const guardar = async (evento) => {
 const traeDatos = (e) => {
     const button = e.target;
     const id = button.dataset.id;
-    const usuario = button.dataset.nombre;
+    const usuario = button.dataset.usuario;
     const rol = button.dataset.rol;
 
     const dataset = {
@@ -145,13 +151,7 @@ const traeDatos = (e) => {
         const body = new FormData(formulario);
         body.append('permiso_id', id);
         body.append('permiso_usuario', usuario);
-        body.append('permiso_rol', rol); 
-        
-        console.log('ID:', id);
-        console.log('Usuario:', usuario);
-        console.log('Rol:', rol);
-
-        return;
+        body.append('permiso_rol', rol);   
 };
 
 
@@ -251,7 +251,6 @@ const eliminar = async (e) => {
 const colocarDatos = (dataset) => {
     formulario.permiso_usuario.value = dataset.usuario;
     formulario.permiso_rol.value = dataset.rol;
-
     formulario.permiso_id.value = dataset.id;
 
     btnGuardar.disabled = true

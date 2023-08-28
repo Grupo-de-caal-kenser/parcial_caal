@@ -136,6 +136,8 @@ class PermisoController
     {
         $usu_id = $_GET['usu_id'];
         $rol_id = $_GET['rol_id'];
+        $permiso_usuario = $_GET['permiso_usuario']; 
+        $permiso_rol = $_GET['permiso_rol']; 
 
         $sql = "SELECT permisos.permiso_id, usuarios.usu_nombre AS permiso_usuario, usuarios.usu_situacion AS usu_situacion, usuarios.usu_id, roles.rol_nombre AS permiso_rol, roles.rol_id
         FROM permisos
@@ -150,6 +152,14 @@ class PermisoController
     
     if ($rol_id != '') {
         $sql .= " AND roles.rol_id = '$rol_id'";
+    }
+    if ($permiso_usuario != '') {
+        $permiso_usuario = strtolower($permiso_usuario);
+        $sql .= " AND LOWER(permiso_usuario) LIKE '%$permiso_usuario%' ";
+    }
+    if ($permiso_rol != '') {
+        $permiso_rol = strtolower($permiso_rol);
+        $sql .= " AND permiso_rol= '$permiso_rol' ";
     }
 
         try {

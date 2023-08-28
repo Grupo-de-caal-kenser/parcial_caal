@@ -58,7 +58,7 @@ const datatable = new Datatable('#tablaUsuarios', {
 
 
 
-//!Aca esta la funcion para buscar
+//!funcion para buscar
 const buscar = async () => {
     contenedor = 1;
 
@@ -86,9 +86,7 @@ const buscar = async () => {
         console.log(error);
     }
 }
-
-
-//!Aca esta la funcion de Desacticar un Usuario
+//esto es para desactivacion
 const desactivar = async e => {
     const result = await Swal.fire({
         icon: 'question',
@@ -211,26 +209,25 @@ const ocultarFormulario = () => {
     tablaUsuariosTabla.style.display = 'block';
 };
 
-//!Para colocar los datos sobre el formulario
+
 const traeDatos = (e) => {
     const button = e.target;
     const id = button.dataset.id;
     const nombre = button.dataset.nombre;
     const catalogo = button.dataset.catalogo;
 
-    //! Llenar el formulario con los datos obtenidos
+
     formulario.usu_id.value = id;
     formulario.usu_nombre.value = nombre;
     formulario.usu_catalogo.value = catalogo;
 }
 
-//!Aca esta la funcino de cancelar la accion de modificar un registro.
 const cancelarAccion = () => {
     formulario.reset();
-    document.getElementById('tablaUsuariosTabla').style.display = 'block'; // Corrección aquí
+    document.getElementById('tablaUsuariosTabla').style.display = 'block'; 
 };
 
-//!Aca esta la funcion de modificar un registro
+
 const modificar = async () => {
     const usu_id = formulario.usu_id.value;
     const body = new FormData(formulario);
@@ -314,9 +311,9 @@ const modificarContrasena = async e => {
                 });
                 const data = await respuesta.json();
 
-                if (data.codigo === 1) {
+                if (data.codigo == 1) {
                     buscar();
-                    return data.mensaje;
+                    return nuevaContrasena;
                 } else {
                     throw new Error(data.detalle || 'Error al modificar contraseña');
                 }
@@ -331,7 +328,7 @@ const modificarContrasena = async e => {
         Swal.fire({
             icon: 'success',
             title: 'Contraseña Modificada',
-            text: nuevaContrasena,
+            text: 'la contraseña se modifico con exito',
             confirmButtonText: 'OK'
         });
     }
@@ -352,6 +349,10 @@ datatable.on('click', '.btn-warning', async (event) => {
     mostrarFormulario();
 
     // Llamar a la función para modificar contraseña
-    await modificarContrasena(event);
+    const newPassword = await modificarContrasena(event);
+
+    // Si la nueva contraseña está disponible, actualízala en los datos de la fila (suponiendo que tienes la lógica para actualizar los datos de la tabla)
+    if (newPassword) {
+    }
 });
 buscar();

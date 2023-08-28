@@ -153,7 +153,7 @@ const modificar = async () => {
     }
 
     const body = new FormData(formulario)
-    const url = '/parcial/API/roles/modificar';
+    const url = '/parcial_caal/API/roles/modificar';
     const config = {
         method : 'POST',
         body

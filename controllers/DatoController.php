@@ -114,7 +114,7 @@ class DatoController {
                 ]);
             } else {
                 echo json_encode([
-                    'mensaje' => 'Ocurrió un error',
+                    'mensaje' => 'Ocurrió un error aqui',
                     'codigo' => 0
                 ]);
             }
@@ -125,5 +125,7 @@ class DatoController {
                 'codigo' => 0
             ]);
         }
+        console.log(usuario);
+        return;
     }
 }
