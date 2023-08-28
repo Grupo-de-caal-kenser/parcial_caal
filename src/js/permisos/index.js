@@ -41,7 +41,7 @@ const datatable = new Datatable('#tablaPermisos', {
             data: 'permiso_id',
             searchable : false,
             orderable : false,
-            render : (data, type, row, meta) => `<button class="btn btn-warning" data-id='${data}' data-usuario='${row["permiso_usuario"]}' data-rol='${row["permiso_rol"]}' >Modificar</button>`
+            render : (data, type, row, meta) => `<button class="btn btn-warning" data-id='${data}' data-nombre='${row["permiso_usuario"]}' data-rol='${row["permiso_rol"]}' >Modificar</button>`
         },
         {
             title : 'ELIMINAR',
@@ -139,19 +139,19 @@ const guardar = async (evento) => {
 const traeDatos = (e) => {
     const button = e.target;
     const id = button.dataset.id;
-    const usuario = button.dataset.usuario;
+    const nombre = button.dataset.nombre;
     const rol = button.dataset.rol;
 
     const dataset = {
         id,
-        usuario,
+        nombre,
         rol
     };
     colocarDatos(dataset);
         const body = new FormData(formulario);
         body.append('permiso_id', id);
-        body.append('permiso_usuario', usuario);
-        body.append('permiso_rol', rol);   
+        body.append('usu_nombre', nombre);
+        body.append('rol_nombre', rol);   
 };
 
 

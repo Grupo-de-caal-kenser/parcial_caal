@@ -109,7 +109,7 @@ class DatoController {
     
             if ($resultado['resultado'] == 1) {
                 echo json_encode([
-                    'mensaje' => 'Actualizacion de Datos Correcta',
+                    'mensaje' => 'Actualizacion de contraseña exitosa',
                     'codigo' => 1
                 ]);
             } else {
